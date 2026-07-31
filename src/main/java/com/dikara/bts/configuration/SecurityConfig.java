@@ -19,7 +19,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -32,10 +31,10 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
-
         DaoAuthenticationProvider provider =
-                new DaoAuthenticationProvider(userDetailsService);
+                new DaoAuthenticationProvider();
 
+        provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
 
         return provider;
@@ -63,16 +62,12 @@ public class SecurityConfig {
                         )
                 )
 
-                .authenticationProvider(
-                        authenticationProvider()
-                )
+                .authenticationProvider(authenticationProvider())
 
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers(
-                                HttpMethod.POST,
-                                "/api/auth/register",
-                                "/api/auth/login"
+                                "/api/auth/**"
                         ).permitAll()
 
                         .requestMatchers(

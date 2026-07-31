@@ -29,6 +29,9 @@ public class AuthController {
             @RequestBody
             RegisterRequest request
     ) {
+        System.out.println("MASUK REGISTER");
+
+
 
         authService.register(request);
 
