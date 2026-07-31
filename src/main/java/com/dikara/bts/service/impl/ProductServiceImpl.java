@@ -48,9 +48,11 @@ public class ProductServiceImpl implements ProductService {
                         category
                 );
 
-        return productRepository
+        Page<ProductResponse> res = productRepository
                 .findAll(specification, pageable)
                 .map(this::toResponse);
+
+        return res;
     }
 
     @Override
