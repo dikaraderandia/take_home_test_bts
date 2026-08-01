@@ -1,0 +1,80 @@
+# BTS Take Home Test
+
+REST API application built using Spring Boot, PostgreSQL, JWT Authentication, Swagger OpenAPI Documentation, and Docker.
+
+---
+
+## Tech Stack
+
+- Java 17
+- Spring Boot 3.5.5
+- Spring Security
+- JWT (Json Web Token)
+- Spring Data JPA
+- PostgreSQL
+- Maven
+- Swagger OpenAPI
+- Docker
+
+---
+
+## Features
+
+### Authentication
+
+- Register User
+- Login User
+- JWT Access Token
+- JWT Refresh Token
+
+### Product Management
+
+- Create Product
+- Update Product
+- Delete Product
+- Get Product By Id
+- Get Product List
+- Search Product
+- Filter By Category
+- Pagination
+
+### Security
+
+- JWT Authentication
+- Stateless Session
+- Protected Endpoints
+
+### Additional Features
+
+- Global Exception Handling
+- Validation Request
+- Audit Fields
+    - createdAt
+    - updatedAt
+    - createdBy
+    - updatedBy
+- Rate Limiting
+
+---
+
+## API Documentation
+
+Swagger UI:
+
+http://localhost:8080/documentation-api
+
+OpenAPI:
+
+http://localhost:8080/v3/api-docs
+
+---
+
+## Database Configuration
+
+Default configuration:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/test_bts
+spring.datasource.username=postgres
+spring.datasource.password=1
+```

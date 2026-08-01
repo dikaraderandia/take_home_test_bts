@@ -1,6 +1,7 @@
 package com.dikara.bts.configuration;
 
 import com.dikara.bts.filter.JwtAuthenticationFilter;
+import com.dikara.bts.filter.RateLimiterFilter;
 import com.dikara.bts.service.impl.CustomUserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -50,7 +51,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http,
-            JwtAuthenticationFilter jwtFilter
+            JwtAuthenticationFilter jwtFilter,
+            RateLimiterFilter rateLimitFilter
     ) throws Exception {
 
         http
@@ -82,7 +84,12 @@ public class SecurityConfig {
                 .addFilterBefore(
                         jwtFilter,
                         UsernamePasswordAuthenticationFilter.class
-                );
+                )
+
+        .addFilterBefore(
+                rateLimitFilter,
+                JwtAuthenticationFilter.class
+        );
 
         return http.build();
     }
